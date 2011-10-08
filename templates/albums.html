@@ -1,0 +1,27 @@
+{% extends  "layout.html" %}
+{% block head %}
+		{{ super() }}
+{% endblock head %}
+{% block content %}
+			   <div id="heading"> Album List </div>
+<div style="float:left;margin-left:50px">
+	<div class="albumWall">
+	{% for album in albums %}
+	   <div class="albumWallCell" id="album.id">
+		  <a href="{{ url_for('album',albumid=album.id) }}">
+			 {% if album.cover_image %}
+				 <img src="{{ url_for('static',filename='uploads/'+album.cover_image) }}" />
+			{% else %}
+				 <img src="{{ url_for('static',filename='uploads/default.png') }}" />
+			 {% endif %}	 
+		  </a>
+		  <div id="info"> Title:  {{ album.title}} </div> <br/>
+		  <div id="info"> Price:  {{ album.price }}$ </div> </br/>
+		  <div id="info"> Genre:   {{ album.genre }}</div>
+	   </div>
+	{% endfor %}
+	
+	   <div style="clear:both;"></div>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,90 @@
+{% extends  "layout.html" %}
+{% block head %}
+		{{ super() }}
+{% endblock head %}
+{% block content %}
+					   <div id="heading"> Upload Tracks </div>
+ 	<div style="float:left;margin-left:220px">
+ 	<form id="add_form" method="POST" action="addalbum"  enctype=multipart/form-data  style="width:500px;margin:auto;">
+	  <p align="left">Title<input type="text" name="title" value="" style="float:right;width:300px;"/><p>
+	  <p align="left">Artist<input type="text" name="artist" value="" style="float:right;width:300px;"/></p>
+	  <p align="left">Genre<input type="text" name="genre" value="" style="float:right;width:300px;"/></p>
+	  <p align="left">Price<input type="text" name="price" value="" style="float:right;width:50px;"/></p>
+	  <p align="left">Album Url<input type="text" name="url" value="" style="float:right;width:300px;"/></p>
+	  <p align="left">Image<input type="file"  name="image" style="float:right;width:300px;"/></p>
+	  <p align="left">Description<textarea rows="1" name="desc" value="" style="float:right;width:300px;"></textarea></p>
+	 	<fieldset id="song_list" name="songs" style="float:left;width:500px">
+	 	    <legend>Songs</legend>
+		   <!-- List of Songs go here-->
+			<p><input type="button" 	value="Add Song" name="song" id="add_song"/></p>
+		</fieldset>
+	  <input  type="submit" value="Submit Album" id="ok" style="margin-left:110px;margin-top:40px;"/></p>
+    </form>
+	</div>
+    <script type="text/javascript">
+    	var songCount=1;
+       $(function() {            
+/*			$("#add_form #ok").bind('click',function() {		
+				var dataString = $(this).closest('form').serialize().replace(/%5B%5D/g,'[]');
+			$(':input','#addalbum')
+				.not(':button, :submit, :reset, :hidden')
+				.attr('disabled',true);
+				this.disabled= true; 	
+				$.ajax({  
+				  type: "POST",  
+				  url: "addalbum",  
+				  data: dataString,  
+				  success: function(data) {  
+					//$('#news').prepend(data).hide().slideDown("slow");
+					$(':input','#addalbum')
+					 .not(':button, :submit, :reset, :hidden')
+					 .val('')
+					 .removeAttr('checked')
+					 .removeAttr('selected');
+					 this.disabled= false; 
+				  },
+				  failure: function() {
+				  }
+				});  
+			
+			return false;
+			});             */
+			
+			$("#add_form #add_song").bind('click',function() {		
+				$('#song_list').append('<fieldset id="song" name="songs" style="float:left;width:460px"><legend>Song '+songCount+'</legend> \
+							<p align="left">Title<input type="text" name="songtitle" id='+songCount+' \
+							value=" " style="width:200px;float:right"/></p> <p align="left">Download URL<input type="text" name="downloadurl" \
+							id='+songCount+' value=" " style="width:200px;float:right"/></p> \
+							<p align="left">Stream URL<input type="text" name="streamurl" id='+songCount+' value=" " style="width:200px;float:right"/></p>	\
+							<p align="left">Youtube URL<input type="text" name="youtubeurl" id="youtubeurl" value="" style="width:200px;float:right"/></p> \
+							<p align="left">Duration<input type="text" name="duration" value="00:00" style="float:right;width:50px;"/>[mm:ss]</p> \
+							<p align="left">Streamable<select  name="streamable" value=1 style="width:200px;float:right"> \
+							<option name="Streamable" value=1>Streamable</option> <option value=0>Non-Streamable</option> \
+							</select></p>	</fieldset>');
+			songCount++;
+			});
+			
+        });           
+
+		function songStream(checkBox) {
+			if(checkBox.checked == true)
+				checkBox.value = 1;
+			else
+				checkBox.value = 0;
+		}
+
+        function ShowRequest(formData, jqForm, options) {
+          var queryString = $.param(formData);
+          alert('BeforeSend method: \n\nAbout to submit: \n\n' + queryString);
+          return true;
+        }
+
+        function AjaxError() {
+          alert("An AJAX error occured.");
+        }
+
+        function SubmitSuccesful(responseText, statusText) {        
+          alert("SuccesMethod:\n\n" + responseText);
+        }    
+    </script>
+{% endblock content %}

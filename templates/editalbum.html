@@ -1,0 +1,106 @@
+{% extends  "layout.html" %}
+{% block head %}
+		{{ super() }}
+{% endblock head %}
+{% block content %}
+				<div id="heading"> Album : {{ album.title }} </div>
+<div class="form" style="float:left;margin-left:150px">
+<!--	<form class="albumInfo" method="POST" action="{{ url_for('album',albumid=album.id) }}" style="width:960px;margin:auto;" enctype=multipart/form-data id="album_info" > -->
+	<form class="albumInfo" id="album_info" method="POST" action="{{ url_for('album',albumid=album.id) }}"  enctype=multipart/form-data  >
+		{% if album.cover_image %}
+			 <img src="{{ url_for('static',filename='uploads/'+album.cover_image) }}" />
+		{% else %}
+			 <img src="{{ url_for('static',filename='uploads/default.png') }}" />
+		{% endif %}	 
+		  <p style="display:none">Id:<input type="text" name="id" value="{{ album.id}}" /></p>
+		  <p align="left">Title<input type="text" class="text" name="title" value="{{ album.title }}"/></p>
+		  <p align="left">Artist<input type="text" class="text" name="artist" value="{{ album.artist }}" /></p>
+		  <p align="left">Genre<input type="text" class="text" name="genre" value="{{ album.genre}}" /></p>
+		  <p align="left">Price($)<input type="text" class="text" name="price" value="{{ album.price}}" style="width:30px"/></p>
+		  <p align="left">Url<input type="text" class="text" name="url" value="{{ album.url }}" style="float:right;margin-left:5px;"/></p>
+		  <p align="left">Cover Image<input type="file"  name="image" /></p>
+		  <p align="left">Desc<textarea  name="desc" class="text" style="float:right;width:300px">{{ album.desc}}</textarea></p>
+
+		  <fieldset id="song_list" name="songs" style="width:550px">
+			  <legend>Songs</legend>
+				<input type="button" 	value="Add Song" name="song" id="add_song" style="text-align:center;"/>
+			  <!-- Songs List -->
+			{% for song in album.songs %}
+			 <fieldset id="song" name="songs" style="float:left;width:500px"><legend>Song {{ loop.index }} </legend>
+			<p style="display:none;">Id<input type="text" name="songid" value="{{ song.id}}" style="width:100px;"/></p>
+			<p align="left">Title<input type="text" name="songtitle" id="songtitle" value="{{ song.title}}" style="width:200px;float:right""/> </p>
+			<p align="left">Stream URL<input type="text" name="streamurl" id='+songCount+' value="{{ song.stream_url }} " style="width:200px;float:right"/></p>
+			<p align="left">Download URL<input type="text" name="downloadurl" id="downloadurl" value="{{ song.download_url }} " style="width:200px;float:right;"/></p>
+			 <p align="left">Youtube URL<input type="text" name="youtubeurl" id="youtubeurl" value="{{ song.youtube_url }}" style="width:200px;float:right""/></p> 
+
+ 			<p align="left">Duration<input type="text" name="duration" value="{{ (song.duration / 60)|int() ~":"~(song.duration % 60)|int()  }}" style="float:right;width:50px;"/>[mm:ss]</p>
+			 <p align="left">Streamable 
+			 <select  name="streamable" value=1 style="width:200px;float:right""> 
+			 <option value=0>Non-Streamable</option>
+			 {% if song.streamable %}
+			 <option value=1 selected>Streamable</option>  
+			{% else %}	
+			 <option value=1 >Streamable</option>  
+			 {% endif %}
+			 </select></p>	</fieldset> 
+			  {% set counter = loop.index %}
+			{% endfor %}
+			</fieldset>
+	  <input  type="submit" value="Submit Album" id="ok" /></p>
+	  	  <div class="loading"> </div>
+		</form>	
+
+</div>
+<script type="text/javascript">
+		var songcount = 1000;
+		$(function() {
+	/*	    $("#album_info #ok").bind('click',function() {
+			var form = $(this).closest('form');
+			var dataString = $(form).serialize();
+
+			$('.text').attr('disabled','true');		
+			//show the loading sign
+			$('.loading').show();
+			
+	    	$.ajax({  
+			  type: "POST",  
+			  url: "{{ url_for('album',albumid=album.id) }}",  
+			  data: dataString,  
+			  success: function(data) {  
+				//$('#news').prepend(data);
+				$('.loading').hide();
+			  },
+			  failure: function() {
+				$('.loading').hide();
+			  }
+			}); 
+			return false;
+		    }); */
+	
+		
+		$("#song_list #add_song").bind('click',function() {		
+			$('#song_list').append('<fieldset id="song" name="songs" style="float:left;width:500px"><legend>Song {{ counter }} </legend> \
+				<p align="left">Title<input type="text" name="songtitle" id="songtitle" value=" " style="width:200px;float:right""/> </p> \
+				<p align="left">Stream URL<input type="text" name="streamurl" id='+songcount+' value=" " style="width:200px;float:right"/></p> \
+				<p align="left">Download URL<input type="text" name="downloadurl" id="downloadurl" value=" " style="width:200px;float:right;"/></p> \
+				 <p align="left">Youtube URL<input type="text" name="youtubeurl" id="youtubeurl" value=" " style="width:200px;float:right""/></p>  \
+	 			<p align="left">Duration<input type="text" name="duration" value="00:00" style="float:right;width:50px;"/>[mm:ss]</p> \
+				 <p align="left">Streamable  <select  name="streamable" value=1 style="width:200px;float:right"">  \
+				 <option value=1 selected="1">Streamable</option>  <option value=0>Non-Streamable</option> </select></p></fieldset>'); 
+
+			songcount++;
+		});
+
+function showRequest(formData, jqForm, options) { 
+
+	$('.loading').show();
+    return true; 
+} 
+ 
+// post-submit callback 
+function showResponse(responseText, statusText, xhr, $form)  { 
+	$('.loading').hide();
+	} 		
+});		
+</script>
+{% endblock content %}

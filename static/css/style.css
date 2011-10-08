@@ -1,0 +1,275 @@
+body {
+    background-color: white;
+    font-size: 13pt;
+    line-height: 1.3;
+    /*font-family: "Museo Sans", "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", "Bitstream Vera Sans", sans-serif;*/
+	font-family:  "Helvetica Neue", Helvetica, Arial, _sans;
+	color: #607890;
+
+}
+
+dt {
+    font-weight: bold;
+}
+
+#left-panel {
+	float:left;
+	width: 200px;
+	height: 200px;
+	margin-top:100px;	
+}
+
+#footer {
+    clear:both;
+   	text-align:center;
+    font-size: 85%;
+    height:100px;
+}
+
+#content {
+	text-align:center;
+	margin-left: 100px;
+	min-height:480px;
+}
+
+#container {
+    max-width: 960px;
+    margin: auto;
+  /*  padding: 1em; */
+    padding-top: 2em;
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 300%;
+    margin: 0.5em 0;
+    text-transform: lowercase;
+}
+
+h1 a, h1 a:hover, h1 a:active, h1 a:visited {
+    color: #444; /* IE 7 doesn't understand "color: inherit;" */
+    border-bottom: 0;
+}
+
+h1 sup {
+    font-size: 60%;
+    margin-right: -0.3em;
+}
+
+h1 .brkt {
+    color: #69c;
+}
+
+h1 .bang {
+    color: red;
+}
+
+h1 .domain {
+    color: #999;
+}
+
+#date-location {
+    float: right;
+    /* Tested in Chrome Mac for baseline alignment with h1 */
+    padding-top: 0.85em;
+}
+
+/* Generic */
+
+h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, blockquote {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+a, a:hover, a:active, a:visited, .ui-widget-content a {
+    color: #607890;
+    text-decoration: none;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+a:hover {
+    border-bottom: 1px solid #607890;
+}
+
+/* Headings */
+#heading {
+    font-size: 200%;
+    margin-bottom: 1.25em;
+    text-align:center;
+	font-family: "Museo Sans", "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", "Bitstream Vera Sans", sans-serif;
+	text-shadow: 0px 0px 2px #607890;
+}
+
+
+h2 {
+    font-size: 200%;
+    margin-bottom: 0.25em;
+}
+
+h3 {
+    font-size: 150%;
+    margin-bottom: 0.25em;
+}
+
+h4 {
+    font-size: 125%;
+}
+
+h5 {
+    font-size: 115%;
+}
+
+h6 {
+    font-size: 105%;
+}
+
+h2 + p, h2 + ul, h2 + ol,
+h3 + p, h3 + ul, h3 + ol {
+    margin-top: 0;
+}
+
+.regsuccess, .x {
+    background-color: #e6e6e6;
+    border: 1px solid #aaa;
+    padding: 0.5em;
+    -webkit-border-radius: 0.25em;
+    -moz-border-radius: 0.25em;
+    border-radius: 0.25em;
+    -webkit-box-shadow: 0px 2px 5px #ccc;
+    -moz-box-shadow: 0px 2px 5px #ccc;
+    box-shadow: 0px 2px 5px #ccc;
+    margin: 1em 0;
+}
+
+.regsuccess:before, .flash-info:before {
+    content: "\2713\00a0";
+}
+
+.flash-error:before {
+    content: "\2639\00a0";
+}
+
+/* Forms */
+form dt {
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+form label.input {
+    font-weight: bold;
+}
+
+form dd {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+form p.hint {
+    margin: 0;
+    font-size: 85%;
+}
+
+form p.error {
+    font-size: 90%;
+    display: inline;
+    background: #f7ea6f;
+    padding: 0.25em;
+    border: 1px solid black;
+    border-top: 0;
+    margin-left: 1em;
+    -webkit-border-bottom-left-radius: 0.25em;
+    -moz-border-radius-bottomleft: 0.25em;
+    border-bottom-left-radius: 0.25em;
+    -webkit-border-bottom-right-radius: 0.25em;
+    -moz-border-radius-bottomright: 0.25em;
+    border-bottom-right-radius: 0.25em;
+}
+
+form textarea {
+    width: 80%;
+    min-height: 5em;
+}
+
+
+li { 
+	list-style-position: outside;
+	list-style-type: none;
+}
+
+.albumWall
+{
+    width:960px;
+}
+
+.albumWallCell
+{
+    float: left;
+    height: 300px;
+    overflow: hidden;
+    width: 250px;
+    padding:4px;
+}
+.albumWallCell img
+{
+    border:none;
+    max-width: 200px;/* or max-height:100px;*/
+	max-height: 200px;
+    overflow: hidden;
+    vertical-align: middle;
+
+    -moz-box-shadow: 0px 3px 3px 4px #888;
+	-webkit-box-shadow: 0px 3px 3px 4px #888;
+	box-shadow: 0px 3px 3px 4px #888;
+
+}
+
+.albumWallCell #info {
+	float:left;
+	margin-top:5px;
+	width:100%;
+}
+
+
+.albumInfo
+{
+    float: left;
+    overflow: hidden;
+    width: 700px;
+    padding:4px;
+    margin:auto;
+}
+.albumInfo img
+{
+   	float:left;
+    border:none;
+    max-width: 300px;/* or max-height:100px;*/
+	height: 300px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+/*.albumInfo p
+{
+   	float:left;
+   	margin-left:30px;
+}
+*/
+.albumInfo input.text
+{
+   	float:right;
+	width:200px;
+	margin-left:5px;
+}
+
+.loading {
+	float:right; 
+	/*background:url("{{ url_for('static','img/ajax-loading.gif') }}") no-repeat 1px; */
+	height:28px; 
+	width:28px; 
+	display:none;
+}
+.hightlight {
+	border:2px solid #9F1319;
+	background:url(iconCaution.gif) no-repeat 2px
+}
+
